@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: ton-pseudo-github/bookandshop # Mets ton repo
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+    - name: "settings"
+    label: "Réglages du site"
+    files:
+            - file: "data/site.json"
+        label: "Infos générales"
+        name: "site"
+        fields:
+                    - {label: "Email contact", name: "email", widget: "string"}
+                    - {label: "Numéro WhatsApp", name: "whatsapp", widget: "string"}
+                    - {label: "Prix Netflix", name: "netflix_price", widget: "string"}
+                    - {label: "Prix Spotify", name: "spotify_price", widget: "string"}
+                    - {label: "Prix Prime Video", name: "prime_price", widget: "string"}
+                    - {label: "Prix Apple Music", name: "apple_price", widget: "string"}
+                    - {label: "Prix Snap+", name: "snap_price", widget: "string"}
+                    - label: "Images du carrousel"
+            name: "slider"
+            widget: "list"
+            fields:
+                            - {label: "Image", name: "image", widget: "image"}
+                            - {label: "Texte WhatsApp", name: "whatsapp_text", widget: "string"}
