@@ -26,7 +26,7 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <h1>Abonnements <span class="gradient-text">Netflix 2.500F</span><br>Spotify 3.500F & Formations</h1>
+                    <h1>Abonnements <span class="gradient-text">Netflix <span id="prix-1">2.500</span>F</span><br>Spotify <span id="prix-3">3.500</span>F & Formations</h1>
                     <p class="hero-subtitle">Gabon, Cameroun, Congo, Sénégal. Paiement après ouverture du compte. Commande en 30s sur WhatsApp.</p>
                     <div class="hero-buttons">
                         <a href="https://wa.me/242061846186?text=Je%20veux%20Netflix%202.500F" class="btn-primary" target="_blank">Commander Netflix</a>
@@ -128,7 +128,7 @@
             <div class="cards">
                 <div class="card-pricing">
                     <h3>Starter</h3>
-                    <p class="price">25.000 FCFA<span>/mois</span></p>
+                   <p class="price"><span id="prix-7">25.000</span> FCFA<span>/mois</span></p>
                     <ul class="pricing-list">
                         <li>4 affiches design</li>
                         <li>2 vidéos montage</li>
@@ -141,7 +141,7 @@
                 <div class="card-pricing featured">
                     <div class="popular-badge">Populaire</div>
                     <h3>Work</h3>
-                    <p class="price">50.000 FCFA<span>/mois</span></p>
+                    <p class="price"><span id="prix-8">50.000</span> FCFA<span>/mois</span></p>
                     <ul class="pricing-list">
                         <li>8 affiches design</li>
                         <li>5 vidéos montage</li>
@@ -155,7 +155,7 @@
                 </div>
                 <div class="card-pricing">
                     <h3>Premium</h3>
-                    <p class="price">75.000 FCFA<span>/mois</span></p>
+                    <p class="price"><span id="prix-9">75.000</span> FCFA<span>/mois</span></p>
                     <ul class="pricing-list">
                         <li>16 affiches design</li>
                         <li>8 vidéos pro</li>
@@ -261,7 +261,26 @@
         });
     });
 </script>
-</body>
-</html>
+<script>
+    async function loadPrices() {
+        try {
+            const res = await fetch('/data/site.json');
+            if (!res.ok) return;
+            const data = await res.json();
+            
+            if (data.products) {
+                data.products.forEach((product, i) => {
+                    const el = document.getElementById(`prix-${i+1}`);
+                    if (el && product.price) {
+                        el.textContent = product.price.toLocaleString('fr-FR');
+                    }
+                });
+            }
+        } catch (e) {
+            console.log('CMS pas encore actif');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', loadPrices);
+</script>
 </body>
 </html>
