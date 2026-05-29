@@ -2,6 +2,7 @@ backend:
   name: github
   repo: bertho-web/bookandshop
   branch: main
+  base_url: https://decap-oauth.pages.dev
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
