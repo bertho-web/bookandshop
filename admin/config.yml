@@ -2,23 +2,14 @@ backend:
   name: github
   repo: bertho-web/bookandshop
   branch: main
-
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-
 collections:
-    - name: "config"
-    label: "Configuration Site"
+    - name: "pages"
+    label: "Pages"
     files:
-            - label: "Prix & Produits"
-        name: "site"
-        file: "data/site.json"
+            - label: "Home"
+        name: "home"
+        file: "index.html"
         fields:
-                    - { label: "Nom du site", name: "site_name", widget: "string" }
-                    - label: "Produits"
-            name: "products"
-            widget: "list"
-            fields:
-                            - { label: "Nom produit", name: "name", widget: "string" }
-                            - { label: "Prix FCFA", name: "price", widget: "number" }
-                            - { label: "Image", name: "image", widget: "image" }
+                    - {label: "Titre", name: "title", widget: "string"}
