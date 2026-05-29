@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: bertho-web/bookanshop
+  repo: bertho-web/bookandshop
   branch: main
 
 media_folder: "images/uploads"
