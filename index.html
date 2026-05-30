@@ -222,17 +222,7 @@
         <svg viewBox="0 0 32 32" fill="white"><path d="M16.003 2.837c-7.333 0-13.324 5.99-13.324 13.324 0 2.35.611 4.624 1.772 6.639L2.6 29.4l6.773-1.823c1.938 1.061 4.124 1.623 6.63 1.623h.005c7.333 0 13.324-5.99 13.324-13.324 0-7.334-5.991-13.324-13.329-13.324zm7.735 19.051c-.328.921-1.92 1.767-2.68 1.882-.688.104-1.547.149-2.496-.157-.576-.183-1.314-.42-2.263-.824-3.985-1.697-6.584-5.684-6.782-5.948-.198-.264-1.626-2.159-1.626-4.118 0-1.96.973-2.84 1.316-3.225.342-.385.746-.48 1.01-.48.264 0 .527.002.757.014.24.012.557-.091.87.666.328.796 1.112 2.75 1.21 2.949.098.198.163.43.032.695-.13.264-.195.428-.39.659-.195.23-.41.515-.585.692-.195.196-.398.409-.17.795.228.386 1.013 1.668 2.175 2.702 1.496 1.333 2.757 1.747 3.153 1.943.396.196.627.163.858-.098.23-.262.994-1.159 1.259-1.556.264-.398.528-.33.892-.198.364.132 2.308 1.089 2.704 1.287.396.198.66.297.757.462.098.165.098.954-.23 1.875z"/></svg>
     </a>
 
-    <script>
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-        }
-    </script>
+   <!-- Slider Hero -->
 <script>
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -250,10 +240,8 @@
         showSlide(currentSlide);
     }
 
-    // Auto slide toutes les 4 secondes
     setInterval(nextSlide, 4000);
 
-    // Click sur les dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             currentSlide = index;
@@ -261,26 +249,41 @@
         });
     });
 </script>
+
+<!-- Chargement des données Decap CMS -->
 <script>
-    async function loadPrices() {
-        try {
-            const res = await fetch('/data/site.json');
-            if (!res.ok) return;
-            const data = await res.json();
-            
-            if (data.products) {
-                data.products.forEach((product, i) => {
-                    const el = document.getElementById(`prix-${i+1}`);
-                    if (el && product.price) {
-                        el.textContent = product.price.toLocaleString('fr-FR');
-                    }
-                });
-            }
-        } catch (e) {
-            console.log('CMS pas encore actif');
+async function loadSiteData() {
+    try {
+        const res = await fetch('/data/site.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        
+        // 1. Prix Streaming dans le Hero
+        if (data.netflix_price) document.getElementById('prix-1').textContent = data.netflix_price.replace('F', '');
+        if (data.spotify_price) document.getElementById('prix-3').textContent = data.spotify_price.replace('F', '');
+        
+        // 2. Email partout
+        if (data.email) {
+            document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+                el.textContent = data.email;
+                el.href = `mailto:${data.email}`;
+            });
         }
+        
+        // 3. WhatsApp - remplace le numéro dans tous les liens
+        if (data.whatsapp) {
+            const waNumber = data.whatsapp.replace(/\D/g,''); // garde que les chiffres
+            document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+                const currentText = new URL(el.href).searchParams.get('text') || 'Bonjour Book and Shop';
+                el.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(currentText)}`;
+            });
+        }
+
+    } catch (e) {
+        console.log('Site.json pas chargé');
     }
-    document.addEventListener('DOMContentLoaded', loadPrices);
+}
+document.addEventListener('DOMContentLoaded', loadSiteData);
 </script>
 </body>
 </html>
