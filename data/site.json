@@ -1,9 +1,148 @@
 {
-  "email": "bookandshop11@gmail.com",
-  "whatsapp": "242068138807",
-  "netflix_price": "2.500F",
-  "spotify_price": "3.500F",
-  "prime_price": "2.500F",
-  "apple_price": "2.500F",
-  "snap_price": "2.500F"
+  "hero": {
+    "title": "Abonnements Netflix <span id=\"prix-1\">2.500</span>F<br>Spotify <span id=\"prix-3\">3.500</span>F & Formations",
+    "subtitle": "Gabon, Cameroun, Congo, Sénégal. Paiement après ouverture du compte. Commande en 30s sur WhatsApp.",
+    "btn1_text": "Commander Netflix",
+    "btn1_link": "https://wa.me/242061846186?text=Je%20veux%20Netflix%202.500F",
+    "btn2_text": "Toutes les offres ↓",
+    "badge1": "⚡ Activation 24h",
+    "badge2": "🔒 Paiement après ouverture",
+    "badge3": "🌍 4 pays"
+  },
+  "hero_slides": [
+    {
+      "image": "/images/netflix.jpg",
+      "alt": "Netflix Premium 2500F"
+    },
+    {
+      "image": "/images/spotify.jpg",
+      "alt": "Spotify Premium 3500F"
+    },
+    {
+      "image": "/images/prime-video.jpg",
+      "alt": "Prime Video 2500F"
+    }
+  ],
+  "streaming": [
+    {
+      "name": "Netflix",
+      "price": 2500,
+      "image": "/images/netflix.jpg",
+      "whatsapp_text": "Je veux Netflix 2.500F"
+    },
+    {
+      "name": "Prime Video",
+      "price": 2500,
+      "image": "/images/prime-video.jpg",
+      "whatsapp_text": "Je veux Prime Video 2.500F"
+    },
+    {
+      "name": "Spotify",
+      "price": 3500,
+      "image": "/images/spotify.jpg",
+      "whatsapp_text": "Je veux Spotify 3.500F"
+    },
+    {
+      "name": "Apple Music",
+      "price": 2500,
+      "image": "/images/apple-music.jpg",
+      "whatsapp_text": "Je veux Apple Music 2.500F"
+    },
+    {
+      "name": "Snap+",
+      "price": 2500,
+      "image": "/images/snap-plus.jpg",
+      "whatsapp_text": "Je veux Snap+ 2.500F"
+    }
+  ],
+  "formations": [
+    {
+      "title": "Formation Facebook Ads",
+      "image": "/images/formation-andromeda.jpg",
+      "overlay_text": "Formation Pub Facebook →",
+      "whatsapp_text": "Formation Facebook Ads Andromeda"
+    },
+    {
+      "title": "Formation Revente Abonnements",
+      "image": "/images/formation-revente.jpg",
+      "overlay_text": "Devenir Revendeur →",
+      "whatsapp_text": "Formation Revente Abonnements"
+    },
+    {
+      "title": "Formation Contenu",
+      "image": "/images/formation-contenu.jpg",
+      "overlay_text": "Formation Contenu →",
+      "whatsapp_text": "Formation Contenu"
+    },
+    {
+      "title": "Service Sponsoring",
+      "image": "/images/sponsoring.jpg",
+      "overlay_text": "Booster mes posts →",
+      "whatsapp_text": "Service Sponsoring"
+    }
+  ],
+  "cm_plans": [
+    {
+      "name": "Starter",
+      "price": 25000,
+      "featured": false,
+      "features": [
+        "4 affiches design",
+        "2 vidéos montage",
+        "1 semaine de publicité",
+        "Gestion réseaux + messagerie",
+        "Gestion clients"
+      ],
+      "whatsapp_text": "Forfait Starter 25.000F"
+    },
+    {
+      "name": "Work",
+      "price": 50000,
+      "featured": true,
+      "features": [
+        "8 affiches design",
+        "5 vidéos montage",
+        "2 semaines de publicité",
+        "Gestion réseaux + messagerie",
+        "Rappel clients",
+        "Rapports publicitaires",
+        "Nom de domaine offert"
+      ],
+      "whatsapp_text": "Forfait Work 50.000F"
+    },
+    {
+      "name": "Premium",
+      "price": 75000,
+      "featured": false,
+      "features": [
+        "16 affiches design",
+        "8 vidéos pro",
+        "3 semaines de publicité",
+        "Gestion réseaux + messagerie",
+        "Gestion clients",
+        "Rapports publicitaires",
+        "Nom de domaine offert"
+      ],
+      "whatsapp_text": "Forfait Premium 75.000F"
+    }
+  ],
+  "visibilite": {
+    "title": "Booste ta portée en 24h",
+    "image": "/images/visibilite.jpg",
+    "features": [
+      "Campagnes ciblées Gabon, Cameroun, Congo",
+      "Design d'affiches pro inclus",
+      "Rapport de performance détaillé",
+      "Support WhatsApp 7j/7"
+    ],
+    "btn_text": "Lancer ma pub",
+    "btn_link": "https://wa.me/242061846186?text=Je%20veux%20booster%20mes%20publications"
+  },
+  "contact": {
+    "whatsapp1": "+242 06 184 61 86",
+    "whatsapp2": "+242 05 373 91 11",
+    "email": "bookandshop11@gmail.com",
+    "footer_text": "Netflix 2.500F, Spotify 3.500F, Formations, CM<br>Gabon, Cameroun, Congo, Sénégal",
+    "copyright": "© 2026 Book and Shop. Site par Bertho Webmaster."
+  }
 }
