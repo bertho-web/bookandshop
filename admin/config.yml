@@ -5,15 +5,21 @@ backend:
   base_url: https://solitary-brook-f7b6.bertho.workers.dev
   auth_endpoint: /auth
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/images"
+public_folder: "/images"
 
 collections:
-  - name: "test"
-    label: "Test"
-    folder: "_test"
-    create: true
-    fields:
-      - label: "Titre"
-        name: "title"
-        widget: "string"
+    - name: "site_data"
+    label: "Données du site"
+    files:
+            - name: "site"
+        label: "Prix & Contacts"
+        file: "data/site.json"
+        fields:
+                    - { label: "Email", name: "email", widget: "string" }
+                    - { label: "WhatsApp principal", name: "whatsapp", widget: "string" }
+                    - { label: "Prix Netflix", name: "netflix_price", widget: "string" }
+                    - { label: "Prix Spotify", name: "spotify_price", widget: "string" }
+                    - { label: "Prix Prime Video", name: "prime_price", widget: "string" }
+                    - { label: "Prix Apple Music", name: "apple_price", widget: "string" }
+                    - { label: "Prix Snap+", name: "snap_price", widget: "string" }
