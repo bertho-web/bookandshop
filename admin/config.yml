@@ -10,16 +10,82 @@ public_folder: "/images"
 
 collections:
     - name: "site_data"
-    label: "Données du site"
+    label: "Book and Shop"
     files:
             - name: "site"
-        label: "Prix & Contacts"
+        label: "Contenu complet du site"
         file: "data/site.json"
         fields:
-                    - { label: "Email", name: "email", widget: "string" }
-                    - { label: "WhatsApp principal", name: "whatsapp", widget: "string" }
-                    - { label: "Prix Netflix", name: "netflix_price", widget: "string" }
-                    - { label: "Prix Spotify", name: "spotify_price", widget: "string" }
-                    - { label: "Prix Prime Video", name: "prime_price", widget: "string" }
-                    - { label: "Prix Apple Music", name: "apple_price", widget: "string" }
-                    - { label: "Prix Snap+", name: "snap_price", widget: "string" }
+                    - label: "Section Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+                            - { label: "Titre principal", name: "title", widget: "string", hint: "Utilise <br> pour sauter une ligne" }
+                            - { label: "Sous-titre", name: "subtitle", widget: "text" }
+                            - { label: "Bouton 1 - Texte", name: "btn1_text", widget: "string" }
+                            - { label: "Bouton 1 - Lien WhatsApp", name: "btn1_link", widget: "string" }
+                            - { label: "Bouton 2 - Texte", name: "btn2_text", widget: "string" }
+                            - { label: "Badge 1", name: "badge1", widget: "string" }
+                            - { label: "Badge 2", name: "badge2", widget: "string" }
+                            - { label: "Badge 3", name: "badge3", widget: "string" }
+
+                    - label: "Slider Hero - Images"
+            name: "hero_slides"
+            widget: "list"
+            fields:
+                            - { label: "Image", name: "image", widget: "image" }
+                            - { label: "Texte alt", name: "alt", widget: "string" }
+
+                    - label: "Abonnements Streaming"
+            name: "streaming"
+            widget: "list"
+            fields:
+                            - { label: "Nom", name: "name", widget: "string" }
+                            - { label: "Prix FCFA", name: "price", widget: "number" }
+                            - { label: "Image", name: "image", widget: "image" }
+                            - { label: "Message WhatsApp", name: "whatsapp_text", widget: "string", hint: "Ex: Je veux Netflix 2.500F" }
+
+                    - label: "Formations & Services Pro"
+            name: "formations"
+            widget: "list"
+            fields:
+                            - { label: "Titre", name: "title", widget: "string" }
+                            - { label: "Image", name: "image", widget: "image" }
+                            - { label: "Texte bouton overlay", name: "overlay_text", widget: "string" }
+                            - { label: "Message WhatsApp", name: "whatsapp_text", widget: "string" }
+
+                    - label: "Forfaits Community Manager"
+            name: "cm_plans"
+            widget: "list"
+            fields:
+                            - { label: "Nom du forfait", name: "name", widget: "string" }
+                            - { label: "Prix FCFA/mois", name: "price", widget: "number" }
+                            - { label: "Badge Populaire ?", name: "featured", widget: "boolean", default: false }
+                            - label: "Liste des services inclus"
+                name: "features"
+                widget: "list"
+                field: { label: "Service", name: "item", widget: "string" }
+                            - { label: "Message WhatsApp", name: "whatsapp_text", widget: "string" }
+
+                    - label: "Section Visibilité"
+            name: "visibilite"
+            widget: "object"
+            fields:
+                            - { label: "Titre", name: "title", widget: "string" }
+                            - { label: "Image", name: "image", widget: "image" }
+                            - label: "Points forts"
+                name: "features"
+                widget: "list"
+                field: { label: "Point", name: "item", widget: "string" }
+                            - { label: "Texte bouton", name: "btn_text", widget: "string" }
+                            - { label: "Lien WhatsApp", name: "btn_link", widget: "string" }
+
+                    - label: "Contact & Footer"
+            name: "contact"
+            widget: "object"
+            fields:
+                            - { label: "WhatsApp 1", name: "whatsapp1", widget: "string" }
+                            - { label: "WhatsApp 2", name: "whatsapp2", widget: "string" }
+                            - { label: "Email", name: "email", widget: "string" }
+                            - { label: "Texte footer description", name: "footer_text", widget: "text" }
+                            - { label: "Copyright", name: "copyright", widget: "string" }
