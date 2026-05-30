@@ -3,6 +3,7 @@ backend:
   repo: bertho-web/bookandshop
   branch: main
   base_url: https://solitary-brook-f7b6.bertho.workers.dev
+  auth_endpoint: /auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
