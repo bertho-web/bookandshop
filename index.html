@@ -3,17 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book and Shop | Netflix 2.500F, Spotify 3.500F, Formations, CM</title>
+    <title>Book and Shop | Agence Digitale & Abonnements Premium</title>
     <meta name="description" content="Abonnements Netflix 2.500F, Spotify 3.500F, Prime Video 2.500F. Formations Marketing, Design, Italien. Community Manager dès 25.000F. Paiement après ouverture.">
-    <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Netlify -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        /* === VARIABLES PREMIUM === */
+        :root {
+            --bg-dark: #0a0f16;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(10, 15, 22, 0.8);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-1: #6366f1; /* Indigo */
+            --accent-2: #ec4899; /* Pink */
+            --gradient-primary: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* === RESET & BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-1); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* === BACKGROUND GLOW === */
+        .bg-glow {
+            position: fixed; width: 600px; height: 600px;
+            background: var(--accent-1); filter: blur(150px);
+            border-radius: 50%; opacity: 0.15; z-index: -1;
+            top: -200px; left: -200px; pointer-events: none;
+        }
+        .bg-glow-2 {
+            position: fixed; width: 500px; height: 500px;
+            background: var(--accent-2); filter: blur(150px);
+            border-radius: 50%; opacity: 0.1; z-index: -1;
+            bottom: -100px; right: -100px; pointer-events: none;
+        }
+
+        /* === HEADER === */
+        .header {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: var(--border-glass); z-index: 1000; padding: 15px 0;
+        }
+        .nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 40px; border-radius: 8px; }
+        
+        /* === BUTTONS === */
+        .btn-nav, .btn-primary, .btn-card {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 12px 28px; border-radius: 50px; font-weight: 600;
+            transition: var(--transition); gap: 8px; font-size: 0.95rem;
+        }
+        .btn-nav { background: rgba(255,255,255,0.1); border: var(--border-glass); color: #fff; }
+        .btn-nav:hover { background: #25D366; border-color: #25D366; transform: translateY(-2px); }
+        .btn-nav svg { width: 20px; height: 20px; }
+
+        .btn-primary { background: var(--gradient-primary); color: white; border: none; box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5); }
+        
+        .btn-ghost { color: var(--text-muted); font-weight: 500; transition: var(--transition); border-bottom: 1px solid transparent; }
+        .btn-ghost:hover { color: #fff; border-bottom: 1px solid #fff; }
+
+        /* === HERO SECTION === */
+        .hero { padding: 160px 0 100px; min-height: 100vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.1; font-weight: 800; margin-bottom: 24px; letter-spacing: -1px; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; max-width: 90%; }
+        .hero-buttons { display: flex; align-items: center; gap: 24px; margin-bottom: 48px; flex-wrap: wrap; }
+        
+        .hero-badges { display: flex; gap: 16px; flex-wrap: wrap; }
+        .badge-item {
+            background: var(--bg-card); border: var(--border-glass);
+            padding: 8px 16px; border-radius: 50px; font-size: 0.85rem;
+            color: var(--text-muted); display: flex; align-items: center; gap: 6px;
+        }
+
+        /* Hero Slider Refined */
+        .hero-image { position: relative; padding: 20px; }
+        .hero-image::before {
+            content: ''; position: absolute; inset: 0;
+            background: var(--gradient-primary); border-radius: var(--radius-lg);
+            opacity: 0.2; filter: blur(30px); z-index: -1;
+        }
+        .slider-wrapper {
+            position: relative; border-radius: var(--radius-lg);
+            overflow: hidden; aspect-ratio: 4/5; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: var(--border-glass); background: var(--bg-card);
+        }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        .slide.active { opacity: 1; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slider-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: var(--transition); }
+        .dot.active { background: #fff; width: 24px; border-radius: 4px; }
+
+        /* === SECTIONS === */
+        .section { padding: 100px 0; }
+        .section-alt { background: rgba(255, 255, 255, 0.01); border-top: var(--border-glass); border-bottom: var(--border-glass); }
+        .section-head { text-align: center; margin-bottom: 64px; }
+        .section-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        /* === GALLERY GRID === */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .gallery-card {
+            position: relative; border-radius: var(--radius-md); overflow: hidden;
+            aspect-ratio: 1; border: var(--border-glass); display: block;
+            background: var(--bg-card);
+        }
+        .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-overlay {
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; align-items: flex-end; padding: 24px;
+            opacity: 0; transition: var(--transition);
+        }
+        .gallery-card:hover img { transform: scale(1.08); }
+        .gallery-card:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+            padding: 12px 20px; border-radius: 50px; font-weight: 600;
+            border: var(--border-glass); width: 100%; text-align: center; transform: translateY(20px); transition: var(--transition);
+        }
+        .gallery-card:hover .gallery-overlay span { transform: translateY(0); }
+
+        /* === PRICING (CM) === */
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: center; }
+        .card-pricing {
+            background: var(--bg-card); border: var(--border-glass);
+            border-radius: var(--radius-lg); padding: 40px 32px;
+            position: relative; transition: var(--transition);
+        }
+        .card-pricing:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.2); }
+        .card-pricing.featured {
+            background: linear-gradient(to bottom, rgba(99, 102, 241, 0.1), transparent);
+            border: 1px solid rgba(99, 102, 241, 0.3); transform: scale(1.05); padding: 50px 32px;
+        }
+        .card-pricing.featured:hover { transform: scale(1.05) translateY(-10px); }
+        .popular-badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: var(--gradient-primary); padding: 6px 16px;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .card-pricing h3 { font-size: 1.5rem; margin-bottom: 16px; color: var(--text-muted); }
+        .card-pricing.featured h3 { color: #fff; }
+        .price { font-size: 2.5rem; font-weight: 800; margin-bottom: 32px; display: flex; align-items: baseline; gap: 8px;}
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        
+        .pricing-list { list-style: none; margin-bottom: 40px; }
+        .pricing-list li {
+            display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: #cbd5e1;
+        }
+        .pricing-list li::before {
+            content: '✓'; display: inline-flex; justify-content: center; align-items: center;
+            width: 20px; height: 20px; background: rgba(99, 102, 241, 0.2);
+            color: #818cf8; border-radius: 50%; font-size: 0.7rem; font-weight: bold;
+        }
+        .btn-card { width: 100%; background: rgba(255,255,255,0.05); border: var(--border-glass); }
+        .btn-card:hover { background: #fff; color: #000; }
+        .featured .btn-card { background: var(--gradient-primary); color: #fff; border: none; }
+        .featured .btn-card:hover { opacity: 0.9; }
+
+        /* === SPONSORING === */
+        .sponsoring-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .sponsoring-img { border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: var(--border-glass); }
+        .visibilite-content h3 { font-size: 2rem; margin-bottom: 24px; }
+
+        /* === FOOTER === */
+        .footer { border-top: var(--border-glass); padding: 80px 0 32px; background: rgba(0,0,0,0.3); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .footer-logo { height: 40px; margin-bottom: 24px; border-radius: 6px; }
+        .footer-brand p { color: var(--text-muted); max-width: 300px; }
+        .footer-links h4 { font-size: 1.1rem; margin-bottom: 24px; }
+        .footer-links a, .footer-links p {
+            display: block; color: var(--text-muted); margin-bottom: 12px; transition: var(--transition);
+        }
+        .footer-links a:hover { color: var(--accent-1); transform: translateX(5px); }
+        .footer-bottom { text-align: center; color: var(--text-muted); font-size: 0.9rem; padding-top: 32px; border-top: var(--border-glass); }
+
+        /* === FLOATING WHATSAPP === */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: #25D366; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 1000; transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+        .whatsapp-float svg { width: 35px; height: 35px; }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .hero-grid, .sponsoring-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 120px; text-align: center; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-subtitle { margin: 0 auto 32px; }
+            .hero-buttons, .hero-badges { justify-content: center; }
+            .cards { grid-template-columns: 1fr; gap: 40px; }
+            .card-pricing.featured { transform: scale(1); }
+            .card-pricing.featured:hover { transform: translateY(-10px); }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .btn-nav { padding: 10px 16px; font-size: 0.85rem; }
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
+
+    <!-- Ambience Glow -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <header class="header" data-aos="fade-down" data-aos-duration="800">
         <div class="container">
             <div class="nav">
-                <img src="./images/logo.png" alt="Book and Shop" class="logo-img">
+                <img src="./images/logo.png" alt="Book and Shop" class="logo-img" onerror="this.src='https://via.placeholder.com/150x40/1e293b/ffffff?text=LOGO'">
                 <a href="https://wa.me/242061846186?text=Bonjour%20Book%20and%20Shop" class="btn-nav" target="_blank">
                     <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.003 2.837c-7.333 0-13.324 5.99-13.324 13.324 0 2.35.611 4.624 1.772 6.639L2.6 29.4l6.773-1.823c1.938 1.061 4.124 1.623 6.63 1.623h.005c7.333 0 13.324-5.99 13.324-13.324 0-7.334-5.991-13.324-13.329-13.324zm7.735 19.051c-.328.921-1.92 1.767-2.68 1.882-.688.104-1.547.149-2.496-.157-.576-.183-1.314-.42-2.263-.824-3.985-1.697-6.584-5.684-6.782-5.948-.198-.264-1.626-2.159-1.626-4.118 0-1.96.973-2.84 1.316-3.225.342-.385.746-.48 1.01-.48.264 0 .527.002.757.014.24.012.557-.091.87.666.328.796 1.112 2.75 1.21 2.949.098.198.163.43.032.695-.13.264-.195.428-.39.659-.195.23-.41.515-.585.692-.195.196-.398.409-.17.795.228.386 1.013 1.668 2.175 2.702 1.496 1.333 2.757 1.747 3.153 1.943.396.196.627.163.858-.098.23-.262.994-1.159 1.259-1.556.264-.398.528-.33.892-.198.364.132 2.308 1.089 2.704 1.287.396.198.66.297.757.462.098.165.098.954-.23 1.875z"/></svg>
                     WhatsApp
@@ -25,70 +265,70 @@
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
-                <div class="hero-content">
-                    <h1>Abonnements <span class="gradient-text">Netflix <span id="prix-1">2.500</span>F</span><br>Spotify <span id="prix-3">3.500</span>F & Formations</h1>
-                    <p class="hero-subtitle">Gabon, Cameroun, Congo, Sénégal. Paiement après ouverture du compte. Commande en 30s sur WhatsApp.</p>
+                <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                    <h1>Abonnements <br><span class="gradient-text">Netflix <span id="prix-1">2.500</span>F</span><br>Spotify <span id="prix-3">3.500</span>F</h1>
+                    <p class="hero-subtitle">Formations & Services CM pro. Gabon, Cameroun, Congo, Sénégal. Paiement après ouverture du compte. Commande en 30s sur WhatsApp.</p>
                     <div class="hero-buttons">
                         <a href="https://wa.me/242061846186?text=Je%20veux%20Netflix%202.500F" class="btn-primary" target="_blank">Commander Netflix</a>
-                        <a href="#services" class="btn-ghost">Toutes les offres ↓</a>
+                        <a href="#services" class="btn-ghost">Explorer nos offres ↓</a>
                     </div>
                     <div class="hero-badges">
                         <div class="badge-item">⚡ Activation 24h</div>
-                        <div class="badge-item">🔒 Paiement après ouverture</div>
-                        <div class="badge-item">🌍 4 pays</div>
+                        <div class="badge-item">🔒 Paiement Sécurisé</div>
+                        <div class="badge-item">🌍 Dispo dans 4 pays</div>
                     </div>
                 </div>
-                <div class="hero-image">
-    <div class="slider-wrapper">
-        <div class="slide active">
-            <img src="./images/netflix.jpg" alt="Netflix Premium 2500F">
-        </div>
-        <div class="slide">
-            <img src="./images/spotify.jpg" alt="Spotify Premium 3500F">
-        </div>
-        <div class="slide">
-            <img src="./images/prime-video.jpg" alt="Prime Video 2500F">
-        </div>
-        <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-    </div>
-</div>
+                <div class="hero-image" data-aos="zoom-in-up" data-aos-duration="1200">
+                    <div class="slider-wrapper">
+                        <div class="slide active">
+                            <img src="./images/netflix.jpg" alt="Netflix Premium 2500F" onerror="this.src='https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/spotify.jpg" alt="Spotify Premium 3500F" onerror="this.src='https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="slide">
+                            <img src="./images/prime-video.jpg" alt="Prime Video 2500F" onerror="this.src='https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="slider-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="services" class="section">
         <div class="container">
-            <div class="section-head">
+            <div class="section-head" data-aos="fade-up">
                 <h2 class="section-title">Abonnements Streaming</h2>
-                <p class="section-subtitle">Clique sur l’affiche pour commander direct. Paiement après ouverture du compte.</p>
+                <p class="section-subtitle">Clique sur l’affiche pour commander direct. Accès instantané, paiement après vérification de votre compte.</p>
             </div>
             <div class="gallery">
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Netflix%202.500F" target="_blank" class="gallery-card">
-                    <img src="./images/netflix.jpg" alt="Netflix Premium 2500F">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Netflix%202.500F" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="./images/netflix.jpg" alt="Netflix Premium 2500F" onerror="this.src='https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Commander Netflix →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Prime%20Video%202.500F" target="_blank" class="gallery-card">
-                    <img src="./images/prime-video.jpg" alt="Prime Video 2500F">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Prime%20Video%202.500F" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="./images/prime-video.jpg" alt="Prime Video 2500F" onerror="this.src='https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Commander Prime Video →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Spotify%203.500F" target="_blank" class="gallery-card">
-                    <img src="./images/spotify.jpg" alt="Spotify 3500F">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Spotify%203.500F" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="./images/spotify.jpg" alt="Spotify 3500F" onerror="this.src='https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Commander Spotify →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Apple%20Music%202.500F" target="_blank" class="gallery-card">
-                    <img src="./images/apple-music.jpg" alt="Apple Music">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Apple%20Music%202.500F" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="./images/apple-music.jpg" alt="Apple Music" onerror="this.src='https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Commander Apple Music →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Snap%2B%202.500F" target="_blank" class="gallery-card">
-                    <img src="./images/snap-plus.jpg" alt="Snap+">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Snap%2B%202.500F" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="500">
+                    <img src="./images/snap-plus.jpg" alt="Snap+" onerror="this.src='https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Commander Snap+ →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Je%20veux%20Formation%20Italien" target="_blank" class="gallery-card">
-                    <img src="./images/italien.jpg" alt="Formation Italien">
+                <a href="https://wa.me/242061846186?text=Je%20veux%20Formation%20Italien" target="_blank" class="gallery-card" data-aos="fade-up" data-aos-delay="600">
+                    <img src="./images/italien.jpg" alt="Formation Italien" onerror="this.src='https://images.unsplash.com/photo-1520155609403-125028bfdf97?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Formation Italien →</span></div>
                 </a>
             </div>
@@ -97,38 +337,40 @@
 
     <section class="section section-alt">
         <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">Formations & Services Pro</h2>
+            <div class="section-head" data-aos="fade-up">
+                <h2 class="section-title">Formations & <span class="gradient-text">Services Pro</span></h2>
             </div>
             <div class="gallery">
-                <a href="https://wa.me/242061846186?text=Formation%20Facebook%20Ads%20Andromeda" target="_blank" class="gallery-card">
-                    <img src="./images/formation-andromeda.jpg" alt="Formation Facebook Ads">
+                <a href="https://wa.me/242061846186?text=Formation%20Facebook%20Ads%20Andromeda" target="_blank" class="gallery-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="./images/formation-andromeda.jpg" alt="Formation Facebook Ads" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Formation Pub Facebook →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Formation%20Revente%20Abonnements" target="_blank" class="gallery-card">
-                    <img src="./images/formation-revente.jpg" alt="Formation Revente">
+                <a href="https://wa.me/242061846186?text=Formation%20Revente%20Abonnements" target="_blank" class="gallery-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="./images/formation-revente.jpg" alt="Formation Revente" onerror="this.src='https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Devenir Revendeur →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Formation%20Contenu" target="_blank" class="gallery-card">
-                    <img src="./images/formation-contenu.jpg" alt="Formation Contenu">
+                <a href="https://wa.me/242061846186?text=Formation%20Contenu" target="_blank" class="gallery-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="./images/formation-contenu.jpg" alt="Formation Contenu" onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Formation Contenu →</span></div>
                 </a>
-                <a href="https://wa.me/242061846186?text=Service%20Sponsoring" target="_blank" class="gallery-card">
-                    <img src="./images/sponsoring.jpg" alt="Service Sponsoring">
+                <a href="https://wa.me/242061846186?text=Service%20Sponsoring" target="_blank" class="gallery-card" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="./images/sponsoring.jpg" alt="Service Sponsoring" onerror="this.src='https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=600&q=80'">
                     <div class="gallery-overlay"><span>Booster mes posts →</span></div>
                 </a>
             </div>
         </div>
-    </section>    <section class="section">
+    </section>    
+
+    <section class="section">
         <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">Forfaits Community Manager</h2>
-                <p class="section-subtitle">On gère tes réseaux pendant que tu gères ton business.</p>
+            <div class="section-head" data-aos="fade-up">
+                <h2 class="section-title">Forfaits <span class="gradient-text">Community Manager</span></h2>
+                <p class="section-subtitle">On gère tes réseaux avec une direction artistique premium pendant que tu te concentres sur ton business.</p>
             </div>
             <div class="cards">
-                <div class="card-pricing">
+                <div class="card-pricing" data-aos="fade-right" data-aos-delay="100">
                     <h3>Starter</h3>
-                   <p class="price"><span id="prix-7">25.000</span> FCFA<span>/mois</span></p>
+                   <p class="price"><span id="prix-7">25.000</span><span> FCFA/mois</span></p>
                     <ul class="pricing-list">
                         <li>4 affiches design</li>
                         <li>2 vidéos montage</li>
@@ -138,10 +380,11 @@
                     </ul>
                     <a href="https://wa.me/242061846186?text=Forfait%20Starter%2025.000F" class="btn-card" target="_blank">Choisir Starter</a>
                 </div>
-                <div class="card-pricing featured">
+                
+                <div class="card-pricing featured" data-aos="fade-up" data-aos-delay="200">
                     <div class="popular-badge">Populaire</div>
                     <h3>Work</h3>
-                    <p class="price"><span id="prix-8">50.000</span> FCFA<span>/mois</span></p>
+                    <p class="price"><span id="prix-8">50.000</span><span> FCFA/mois</span></p>
                     <ul class="pricing-list">
                         <li>8 affiches design</li>
                         <li>5 vidéos montage</li>
@@ -153,9 +396,10 @@
                     </ul>
                     <a href="https://wa.me/242061846186?text=Forfait%20Work%2050.000F" class="btn-card" target="_blank">Choisir Work</a>
                 </div>
-                <div class="card-pricing">
+                
+                <div class="card-pricing" data-aos="fade-left" data-aos-delay="300">
                     <h3>Premium</h3>
-                    <p class="price"><span id="prix-9">75.000</span> FCFA<span>/mois</span></p>
+                    <p class="price"><span id="prix-9">75.000</span><span> FCFA/mois</span></p>
                     <ul class="pricing-list">
                         <li>16 affiches design</li>
                         <li>8 vidéos pro</li>
@@ -173,20 +417,21 @@
 
     <section class="section section-alt">
         <div class="container">
-            <div class="section-head">
-                <h2 class="section-title">Service Visibilité</h2>
-            </div>
             <div class="sponsoring-grid">
-                <img src="./images/visibilite.jpg" alt="Visibilité Service Sponsoring" class="sponsoring-img">
-                <div class="visibilite-content">
+                <div data-aos="fade-right">
+                    <img src="./images/visibilite.jpg" alt="Visibilité Service Sponsoring" class="sponsoring-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="visibilite-content" data-aos="fade-left">
+                    <h2 class="section-title">Service <span class="gradient-text">Visibilité</span></h2>
                     <h3>Booste ta portée en 24h</h3>
                     <ul class="pricing-list">
-                        <li>Campagnes ciblées Gabon, Cameroun, Congo</li>
+                        <li>Campagnes ultra-ciblées (Gabon, Cameroun, Congo)</li>
                         <li>Design d’affiches pro inclus</li>
-                        <li>Rapport de performance détaillé</li>
-                        <li>Support WhatsApp 7j/7</li>
+                        <li>Rapport de performance détaillé (ROI)</li>
+                        <li>Support VIP WhatsApp 7j/7</li>
                     </ul>
-                    <a href="https://wa.me/242061846186?text=Je%20veux%20booster%20mes%20publications" class="btn-primary" target="_blank">Lancer ma pub</a>
+                    <br>
+                    <a href="https://wa.me/242061846186?text=Je%20veux%20booster%20mes%20publications" class="btn-primary" target="_blank">Lancer ma campagne</a>
                 </div>
             </div>
         </div>
@@ -195,95 +440,157 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="./images/logo.png" alt="Book and Shop" class="footer-logo">
-                    <p>Netflix 2.500F, Spotify 3.500F, Formations, CM<br>Gabon, Cameroun, Congo, Sénégal</p>
+                <div class="footer-brand" data-aos="fade-up" data-aos-delay="100">
+                    <img src="./images/logo.png" alt="Book and Shop" class="footer-logo" onerror="this.src='https://via.placeholder.com/150x40/1e293b/ffffff?text=LOGO'">
+                    <p>Agence digitale premium & vente d'abonnements certifiés.<br>Actif au Gabon, Cameroun, Congo, Sénégal.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Contact WhatsApp</h4>
-                    <a href="https://wa.me/242061846186" target="_blank">+242 06 184 61 86</a>
-                    <a href="https://wa.me/242053739111" target="_blank">+242 05 373 91 11</a>
-                   <a href="mailto:bookandshop11@gmail.com">bookandshop11@gmail.com</a>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Contact Support</h4>
+                    <a href="https://wa.me/242061846186" target="_blank">→ +242 06 184 61 86</a>
+                    <a href="https://wa.me/242053739111" target="_blank">→ +242 05 373 91 11</a>
+                    <a href="mailto:bookandshop11@gmail.com">→ bookandshop11@gmail.com</a>
                 </div>
-                <div class="footer-links">
-                    <h4>Paiement Mobile</h4>
-                    <p>MTN Mobile Money</p>
-                    <p>Airtel Money</p>
-                    <p>Paiement après ouverture du compte</p>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Paiement Sécurisé</h4>
+                    <p>💳 MTN Mobile Money</p>
+                    <p>💳 Airtel Money</p>
+                    <p>🤝 Paiement après ouverture du compte</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Book and Shop. Site par Bertho Webmaster.</p>
+                <p>© 2026 Book and Shop. Site designé par Bertho Webmaster.</p>
             </div>
         </div>
     </footer>
 
+<!-- Floating WhatsApp -->
     <a href="https://wa.me/242061846186?text=Bonjour%20Book%20and%20Shop" class="whatsapp-float" target="_blank">
         <svg viewBox="0 0 32 32" fill="white"><path d="M16.003 2.837c-7.333 0-13.324 5.99-13.324 13.324 0 2.35.611 4.624 1.772 6.639L2.6 29.4l6.773-1.823c1.938 1.061 4.124 1.623 6.63 1.623h.005c7.333 0 13.324-5.99 13.324-13.324 0-7.334-5.991-13.324-13.329-13.324zm7.735 19.051c-.328.921-1.92 1.767-2.68 1.882-.688.104-1.547.149-2.496-.157-.576-.183-1.314-.42-2.263-.824-3.985-1.697-6.584-5.684-6.782-5.948-.198-.264-1.626-2.159-1.626-4.118 0-1.96.973-2.84 1.316-3.225.342-.385.746-.48 1.01-.48.264 0 .527.002.757.014.24.012.557-.091.87.666.328.796 1.112 2.75 1.21 2.949.098.198.163.43.032.695-.13.264-.195.428-.39.659-.195.23-.41.515-.585.692-.195.196-.398.409-.17.795.228.386 1.013 1.668 2.175 2.702 1.496 1.333 2.757 1.747 3.153 1.943.396.196.627.163.858-.098.23-.262.994-1.159 1.259-1.556.264-.398.528-.33.892-.198.364.132 2.308 1.089 2.704 1.287.396.198.66.297.757.462.098.165.098.954-.23 1.875z"/></svg>
     </a>
 
-   <!-- Slider Hero -->
-<script>
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    setInterval(nextSlide, 4000);
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentSlide = index;
-            showSlide(currentSlide);
+    <!-- AOS Script pour les animations fluides -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true, // L'animation ne se joue qu'une fois
+            offset: 50
         });
-    });
-</script>
+    </script>
 
-<!-- Chargement des données Decap CMS -->
+    <!-- Netlify Identity -->
+    <script>
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+    </script>
+
+    <!-- Script Slider Image -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto slide toutes les 4 secondes
+        setInterval(nextSlide, 4000);
+
+        // Click sur les dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+    </script>
+
+<!-- Script CMS Dynamique -->
 <script>
-async function loadSiteData() {
-    try {
-        const res = await fetch('/data/site.json');
-        if (!res.ok) return;
-        const data = await res.json();
-        
-        // 1. Prix Streaming dans le Hero
-        if (data.netflix_price) document.getElementById('prix-1').textContent = data.netflix_price.replace('F', '');
-        if (data.spotify_price) document.getElementById('prix-3').textContent = data.spotify_price.replace('F', '');
-        
-        // 2. Email partout
-        if (data.email) {
-            document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
-                el.textContent = data.email;
-                el.href = `mailto:${data.email}`;
-            });
+    async function loadSiteData() {
+        try {
+            const res = await fetch('/data/site.json');
+            if (!res.ok) {
+                console.log('site.json introuvable');
+                return;
+            }
+            const data = await res.json();
+            
+            // 1. HERO
+            if (data.hero) {
+                const heroTitle = document.querySelector('.hero-content h1');
+                if (heroTitle) heroTitle.innerHTML = data.hero.title;
+                
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                if (heroSubtitle) heroSubtitle.textContent = data.hero.subtitle;
+                
+                const btn1 = document.querySelector('.hero-buttons.btn-primary');
+                if (btn1) {
+                    btn1.textContent = data.hero.btn1_text;
+                    btn1.href = data.hero.btn1_link;
+                }
+                
+                const btn2 = document.querySelector('.hero-buttons.btn-ghost');
+                if (btn2) btn2.textContent = data.hero.btn2_text;
+                
+                const badges = document.querySelectorAll('.badge-item');
+                if (badges[0]) badges[0].textContent = data.hero.badge1;
+                if (badges[1]) badges[1].textContent = data.hero.badge2;
+                if (badges[2]) badges[2].textContent = data.hero.badge3;
+            }
+            
+            // 2. PRIX DYNAMIQUES HERO - Netflix & Spotify
+            if (data.streaming) {
+                const netflix = data.streaming.find(p => p.name.toLowerCase().includes('netflix'));
+                const spotify = data.streaming.find(p => p.name.toLowerCase().includes('spotify'));
+                
+                const prix1 = document.getElementById('prix-1');
+                if (prix1 && netflix) prix1.textContent = netflix.price.toLocaleString('fr-FR');
+                
+                const prix3 = document.getElementById('prix-3');
+                if (prix3 && spotify) prix3.textContent = spotify.price.toLocaleString('fr-FR');
+            }
+            
+            // 3. PRIX FORFAITS CM
+            if (data.cm_plans) {
+                data.cm_plans.forEach((plan, i) => {
+                    const el = document.getElementById(`prix-${i+7}`);
+                    if (el) el.textContent = plan.price.toLocaleString('fr-FR');
+                });
+            }
+            
+            // 4. CONTACT FOOTER
+            if (data.contact) {
+                document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+                    el.textContent = data.contact.email;
+                    el.href = `mailto:${data.contact.email}`;
+                });
+                
+                const footerCopy = document.querySelector('.footer-bottom p');
+                if (footerCopy) footerCopy.textContent = data.contact.copyright;
+            }
+            
+        } catch (e) {
+            console.log('Erreur CMS:', e);
         }
-        
-        // 3. WhatsApp - remplace le numéro dans tous les liens
-        if (data.whatsapp) {
-            const waNumber = data.whatsapp.replace(/\D/g,''); // garde que les chiffres
-            document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-                const currentText = new URL(el.href).searchParams.get('text') || 'Bonjour Book and Shop';
-                el.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(currentText)}`;
-            });
-        }
-
-    } catch (e) {
-        console.log('Site.json pas chargé');
     }
-}
-document.addEventListener('DOMContentLoaded', loadSiteData);
+    document.addEventListener('DOMContentLoaded', loadSiteData);
 </script>
 </body>
 </html>
